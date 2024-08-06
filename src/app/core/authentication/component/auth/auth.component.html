@@ -1,1 +1,60 @@
-<p>auth works!</p>
+<body>
+    <div class="container" id="container">
+        <div class="form-container">
+            <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+                <h1>Travela</h1>
+                <p>{{ isLoginMode ? 'Welcome back!' : 'Welcome to Travela!'}}</p>
+                <h2>{{ isLoginMode ? 'Login' : 'Sign Up'}}</h2>
+                <div class="form-input" *ngIf="!isLoginMode">
+                    <label>First Name</label>
+                    <input formControlName="firstName" type="firstName" placeholder="First Name">
+                    <small *ngIf="loginForm.get('firstName')?.invalid && loginForm.get('firstName')?.touched">
+                        *Please enter your first name.
+                    </small>
+                </div>
+                <div class="form-input" *ngIf="!isLoginMode">
+                    <label>Last Name</label>
+                    <input formControlName="lastName" type="lastName" placeholder="Last Name">
+                    <small *ngIf="loginForm.get('lastName')?.invalid && loginForm.get('lastName')?.touched">
+                        *Please enter your last name.
+                    </small>
+                </div>
+                <div class="form-input">
+                    <label>Email</label>
+                    <input formControlName="email" type="email" placeholder="Email Address">
+                    <small *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched">
+                        *Please enter a valid email.
+                    </small>
+                </div>
+                <div class="form-input">
+                    <label>Password</label>
+                    <input formControlName="password" type="password" placeholder="Password">
+                    <small *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched">
+                        *Password is required.
+                    </small>
+                </div>
+                <div class="form-input radio-btn">
+                    <input formControlName="authentication" type="radio" value="user" placeholder="Password"> User
+                    <input formControlName="authentication" type="radio" value="admin" placeholder="Password"> Admin
+                </div>
+                <button type="submit" value="Submit" class="app-login-btn" [disabled]="!isFormValid()">{{ isLoginMode ? 'Login' : 'Sign Up'}} <fa-icon [icon]="faArrowRightLong"></fa-icon></button>
+                <span>or continue with</span>
+                <div class="social-icons">
+                    <button class="icon"><fa-icon [icon]="faGoogle"></fa-icon></button>
+                    <button class="icon"><fa-icon [icon]="faGithub"></fa-icon></button>
+                    <button class="icon"><fa-icon [icon]="faFacebook"></fa-icon></button>
+                </div>
+                <span class="toggle-btn">{{ isLoginMode ? 'Do not have an account yet?' : 'Already have an account?'}}
+                    <button class="app-toggle-btn" type="button" (click)="onSwitchMode()">{{ isLoginMode ? 'Sign Up Here' : 'Login Here'}}</button>
+                </span>
+            </form>
+            <div class="left-container">
+                <div class="panel">
+                    <div class="left-panel">
+                        <img src="assets/Airport-cuate.png" alt="Airport Illustration">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>

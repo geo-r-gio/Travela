@@ -1,0 +1,210 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+*{
+    // margin: auto;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', 'JetBrains Mono';
+}
+
+@mixin buttonSize() {
+    align-self: center;
+    font-size: 12px;
+    padding: 10px 45px;
+    border: 1px solid transparent;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+body{
+    width: 100vw;
+    height: 100vh;
+    background-image: url("/assets/blob-scene-haikei\ \(23\).svg");
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.container{
+    background-color: #fff;
+    border-radius: 30px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
+    position: relative;
+    margin: auto;
+    // padding: 50px;
+    overflow: hidden;
+    width: 1226px;
+    height: auto;
+    max-width: 100%;
+    min-height: 480px;
+    h1{
+        color: #D885A3;
+    }
+    p, h1, h2{
+        line-height: 8px;
+        letter-spacing: 0.3px;  
+    }
+    p, h2, label, input, small, button{
+        font-family: 'JetBrains Mono';
+    }
+    span{
+        display: table;
+        margin: 0 auto;
+        font-size: 12px;
+        width: max-content;
+        // text-align: center;
+        margin-top: 10px;
+    }
+    .toggle-btn{
+        margin-top: -20px;
+        // margin-bottom: 20px;
+    }
+    a{
+        color: #333;
+        font-size: 13px;
+        text-decoration: none;
+        margin: 15px 0px 10px;
+    }
+    button{
+        @include buttonSize();
+        // align-self: center;
+        background-color: #D885A3;
+        color: #fff;
+        // font-size: 12px;
+        // padding: 10px 45px;
+        width: 250px;
+        // border: 1px solid transparent;
+        // border-radius: 20px;
+        font-weight: 600;
+        letter-spacing: 0.5px;
+        text-transform: uppercase;
+        margin-top: 10px;
+        // cursor: pointer;
+        &:hover{
+            background-color: #c43c6e;
+        }
+        &:disabled{
+            background-color: #ccc;
+            color: #666;
+            cursor: not-allowed;
+        }
+    }
+    button.app-toggle-btn{
+        position: relative;
+        left: 40px;
+        width: auto;
+        background-color: transparent;
+        color: #D885A3;
+    }
+    form{
+        display: flex;
+        // justify-content: center;
+        flex-direction: column;
+        margin-left: 720px;
+        height: auto;
+        max-height: 506px;
+        overflow-y: auto;
+        overflow-x: clip;
+        &::-webkit-scrollbar{
+            width: 0;
+            background: transparent;
+            // overflow-y: auto;
+            // display: none;
+            // overflow-x: clip;
+        }
+    }
+    .form-container{
+        position: relative;
+        padding: 50px;
+        top: 0;
+    }
+    .form-input{
+        margin-bottom: 16px;
+        input, label{
+            display: block;
+        }
+        input{
+            padding: 8px;
+            height: 35px;
+            border-radius: 4px;
+            width: 100%;
+            border: 2px solid #ccc;
+            background-color: white;
+        }
+        input.ng-invalid.ng-touched{
+            border: 2px solid red;
+        }
+        small{
+            color: red;
+            font-weight: bold;
+        }
+    }
+    .radio-btn{
+        display: flex;
+        align-items: center;
+        width: 150px;
+        margin-bottom: 10px;
+        font-family: 'JetBrains Mono';
+        font-size: 15.5px;
+    }
+    .social-icons{
+        margin: 20px 0;
+        align-self: center;
+        .icon{
+            @include buttonSize();
+            padding: 0px 55px;
+            display: inline-flex;
+            justify-content: center;
+            background-color: #ffffff;
+            border-color: #6096B4;
+            color: #427692;
+            margin: 0 3px;
+            width: 80px;
+            transition: border-color 0.3s ease, color 0.3s ease;
+            fa-icon{
+                font-size: 25px;
+            }
+            &:hover {
+                border-color: #c43c6e; /* Change border color on hover */
+                color: #c43c6e; /* Change icon color on hover */
+    
+                fa-icon {
+                    color: #c43c6e; /* Ensure the icon color changes */
+                }
+            }
+        }
+    }
+}
+
+.left-container{
+    position: absolute;
+    top: 0;
+    left: 0%;
+    width: 60%;
+    height: 100%;
+    overflow: hidden;
+    border-radius: 0 70px 70px 0;
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .panel{
+        background-color: #C0DBEA;
+        height: 100%;
+        .left-panel{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: auto;
+            //  margin-left: 50%;
+            // margin-top: 50%;
+            img{
+                width: 820px;
+                object-position: 0 -80px;
+                // margin-bottom: 200px;
+            }
+        }
+    }
+}
