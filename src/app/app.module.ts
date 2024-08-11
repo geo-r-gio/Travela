@@ -13,6 +13,9 @@ import { GalleryComponent } from './shared/components/gallery/gallery.component'
 import { CountryDetailsComponent } from './features/country-details/country-details.component';
 import { ProfileComponent } from './features/profile/profile.component';
 import { EditProfileComponent } from './features/profile/edit-profile/edit-profile.component';
+import { provideHttpClient, withInterceptors } from '@angular/common/http';
+import { tokenInterceptor } from './core/authentication/interceptors/token.interceptor';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -30,9 +33,10 @@ import { EditProfileComponent } from './features/profile/edit-profile/edit-profi
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    SharedModule,
   ],
-  providers: [],
+  providers: [provideHttpClient(withInterceptors([tokenInterceptor]))],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

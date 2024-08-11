@@ -3,17 +3,17 @@ import { AuthService } from '../services/auth.service';
 import { inject } from '@angular/core';
 import { SnackbarService } from '../../../shared/services/snackbar/snackbar.service';
 
-export const authGuard: CanActivateFn = (route, state) => {
+export const roleGuard: CanActivateFn = (route, state) => {
 
   const authService = inject(AuthService);
   const snackbarService = inject(SnackbarService);
   const router = inject(Router);
 
-  if(authService.isLoggedIn()){
+  if(authService.isAdmin()){
     return true;
   } else {
-    snackbarService.show('You must be logged in to access this page.');
-    router.navigate(['login'])
+    snackbarService.show('You do not have access to this page.');
+    router.navigate(['home']);
     return false;
   }
 };
