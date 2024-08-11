@@ -1,4 +1,6 @@
 <body>
+    <app-snackbar [errorMessage]="errorMessage" *ngIf="errorMessage"></app-snackbar>
+    <app-snackbar [successMessage]="successMessage" *ngIf="successMessage"></app-snackbar>
     <div class="container" id="container">
         <div class="form-container">
             <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
@@ -34,8 +36,8 @@
                     </small>
                 </div>
                 <div class="form-input radio-btn">
-                    <input formControlName="authentication" type="radio" value="user" placeholder="Password"> User
-                    <input formControlName="authentication" type="radio" value="admin" placeholder="Password"> Admin
+                    <input formControlName="role" type="radio" value="user" placeholder="Password"> User
+                    <input formControlName="role" type="radio" value="admin" placeholder="Password"> Admin
                 </div>
                 <button type="submit" value="Submit" class="app-login-btn" [disabled]="!isFormValid()">{{ isLoginMode ? 'Login' : 'Sign Up'}} <fa-icon [icon]="faArrowRightLong"></fa-icon></button>
                 <span>or continue with</span>

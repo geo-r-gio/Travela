@@ -1,7 +1,11 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { faGoogle, faGithub, faFacebook } from '@fortawesome/free-brands-svg-icons';
 import { faArrowRightLong } from '@fortawesome/free-solid-svg-icons';
+import { AuthService } from '../../services/auth.service';
+import { SnackbarService } from '../../../../shared/services/snackbar/snackbar.service';
+import { Observable, tap } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-auth',
@@ -17,15 +21,21 @@ export class AuthComponent {
 
   isLoginMode: Boolean = true;
   public loginForm! : FormGroup;
+  errorMessage: string | null = null;
+  successMessage: string | null = null;
+  authObs!: Observable<any>;
   
-  constructor(private formBuilder : FormBuilder){}
+  constructor(private formBuilder : FormBuilder, private authService : AuthService, 
+    private snackbarService : SnackbarService, private router : Router){ }
 
-  // loginForm = new FormGroup({
-  //   firstName: new FormControl(''),
-  //   lastName: new FormControl(''),
-  //   email: new FormControl('', [Validators.required, Validators.email]),
-  //   password: new FormControl('', [Validators.required, Validators.minLength(8)]),
-  // });
+  ngOnInit(){
+    this.createForm();
+    this.snackbarService.snackbarState
+    .subscribe(message => {
+      this.errorMessage = message;
+      this.hideSnackbar(); 
+    });
+  }
 
   private createForm(){
     this.loginForm = this.formBuilder.group({
@@ -33,7 +43,7 @@ export class AuthComponent {
       lastName: ['', [Validators.required]],
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(8)]],
-      authentication: ['', [Validators.required]]
+      role: ['', [Validators.required]]
     });
   }
 
@@ -43,30 +53,70 @@ export class AuthComponent {
 
   isFormValid() {
     if (this.isLoginMode) {
-      return this.loginForm.get('email')?.valid && this.loginForm.get('password')?.valid && this.loginForm.get('authentication')?.valid;
+      return this.loginForm.get('email')?.valid && this.loginForm.get('password')?.valid && this.loginForm.get('role')?.valid;
     } else {
       return this.loginForm.valid;
     }
   }
 
   onSubmit() {
+    const email = this.loginForm.value.email;
+    const password = this.loginForm.value.password;
+    const role = this.loginForm.value.role;
+
     if (this.isLoginMode) {
       // Handle login
       const loginData = {
         email: this.loginForm.value.email,
         password: this.loginForm.value.password,
-        authentication: this.loginForm.value.authentication
+        role: this.loginForm.value.role
       };
-      console.log('Login Data:', loginData);
+     
+      this.authObs = this.authService.onLogin(email, password, role)
     } else {
       // Handle signup
       const signupData = this.loginForm.value;
-      console.log('Signup Data:', signupData);
+      
+      if (role === 'admin') {
+        // Admin signup
+        this.authObs = this.authService.onAdminSignUp(signupData);
+      } else {
+        // Regular user signup
+        this.authObs = this.authService.onSignUp(signupData);
+      }
     }
+
+    this.authObs.subscribe({
+      next: (res) => { 
+        console.log(res) 
+        if(!this.isLoginMode){
+          let successMsg = 'Sign Up Successful! Please Login to Continue'
+          this.successMessage = successMsg;
+          this.isLoginMode = true;
+        } else {
+          let successMsg = 'Login Successful!'
+          this.successMessage = successMsg;
+          
+          this.authService.storeToken(res.Login.AccessToken);
+          this.authService.storeRefreshToken(res.Login.RefreshToken);
+          this.router.navigate(['home']);
+        }
+        this.hideSnackbar();
+      },
+      error: (errMsg) => { 
+        console.error(errMsg)
+        this.errorMessage = errMsg;
+        this.hideSnackbar();
+      }
+    });
+    this.loginForm.reset();
   }
 
-  ngOnInit(){
-    this.createForm();
+  hideSnackbar(){
+    setTimeout(() => {
+      this.successMessage = null;
+      this.errorMessage = null;
+    }, 3000);
   }
 
 }
