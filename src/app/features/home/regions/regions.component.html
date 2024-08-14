@@ -1,8 +1,146 @@
-<app-snackbar [errorMessage]="errorMessage" *ngIf="errorMessage"></app-snackbar>
-<button class="btn" (click)="logOut()">Log Out</button>
-<ul>
-   <li *ngFor="let country of countries">
-     {{ country.name.common }}
-   </li>
-</ul>
-<p>regions works!</p>
+<body>
+  <div class="color"></div>
+  <app-snackbar [errorMessage]="errorMessage" *ngIf="errorMessage"></app-snackbar>
+  <button class="btn" (click)="logOut()">Log Out</button>
+  <section class="home">
+    <div class="home-text">
+      <h1>Discover Your <br> Next <br> Adventure</h1>
+      <p>Welcome to Travela, your ultimate guide to exploring the 
+        world. Whether you're a seasoned traveler or planning 
+        your first big adventure, we provide you with everything 
+        you need to know about every country on the planet.</p>
+    </div>
+    <div class="home-image">
+      <img src="assets/destination-pana.png">
+    </div>
+  </section>
+
+  <section class="region">
+    <div class="title">
+      <h1>Regions</h1>
+    </div>    
+    <h3>Filter By Continents</h3>
+    <div class="regions-map">
+      <img class="map" src="assets/map-bg.png">
+      <img class="line" src="assets/line.png">
+
+      <div class="continent-container north-america-container">
+        <img class="north-america" src="assets/north-america.png" alt="North America">
+        <div class="popup">North America</div>
+      </div>
+
+      <div class="continent-container south-america-container">
+        <img class="south-america" src="assets/south-america.png" alt="South America">
+        <div class="popup">South America</div>
+      </div>
+
+      <div class="continent-container africa-container">
+        <img class="africa" src="assets/africa.png" alt="Africa">
+        <div class="popup">Africa</div>
+      </div>
+
+      <div class="continent-container europe-container">
+        <img class="europe" src="assets/europe.png" alt="Europe">
+        <div class="popup">Europe</div>
+      </div>
+
+      <div class="continent-container asia-container">
+        <img class="asia" src="assets/asia.png" alt="Asia">
+        <div class="popup">Asia</div>
+      </div>
+
+      <div class="continent-container oceania-container">
+        <img class="oceania" src="assets/oceania.png" alt="Oceania">
+        <div class="popup">Oceania</div>
+      </div>
+      
+      <!-- <img class="north-america" src="assets/north-america.png" alt="North America">
+      <img class="south-america" src="assets/south-america.png" alt="South America">
+      <img class="africa" src="assets/africa.png" alt="Africa">
+      <img class="europe" src="assets/europe.png" alt="Europe">
+      <img class="asia" src="assets/asia.png" alt="Asia">
+      <img class="oceania" src="assets/oceania.png" alt="Oceania"> -->
+    </div>
+  </section>
+
+  <section class="countries">
+    <div class="title">
+      <h1>Countries</h1>
+    </div>   
+    <div class="search-box">
+      <input type="text" placeholder="Search...">
+      <a href="#"><fa-icon class="search" [icon]="faSearch"></fa-icon></a>
+    </div> 
+    <div class="filter-box">
+      <div class="dropdown">
+        <div class="default-option" (click)="toggleDropdown('subregion')">
+          <span>Sub Region <br></span>
+          <span class="dropdown-label">{{ selectedSubregion || 'Any Region' }}<fa-icon class="location" [icon]="faLocation"></fa-icon></span>
+        </div>
+        <div class="dropdown-list" *ngIf="isDropdown('subregion')">
+          <ul>
+            <li *ngFor="let subregion of countries | unique:'subregion'" (click)="selectSubregion(subregion)">
+              {{ subregion.subregion }}
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- <div class="dropdown">
+        <div class="default-option" (click)="toggleDropdown('city')">
+          <span>Capital City <br></span>
+          <span class="dropdown-label">{{ selectedCity || 'Any City' }}<fa-icon class="location" [icon]="faLocation"></fa-icon></span>
+        </div>
+        <div class="dropdown-list" *ngIf="isDropdown('city')">
+          <ul>
+            <li *ngFor="let city of countries | unique:'subregion'" (click)="selectCity(city)">
+              {{ city.capital[0] }}
+            </li>
+          </ul>
+        </div>
+      </div> -->
+
+      <!-- <div class="dropdown">
+        <div class="default-option" (click)="toggleDropdown('language')">
+          <span>Language <br></span>
+          <span class="dropdown-label">{{ selectedCity || 'Any Language' }}<fa-icon class="location" [icon]="faLocation"></fa-icon></span>
+        </div>
+        <div class="dropdown-list" *ngIf="isDropdown('language')">
+          <ul>
+            <li *ngFor="let city of countries | unique:'subregion'" (click)="selectCity(city)">
+              {{ city.capital[0] }}
+            </li>
+          </ul>
+        </div>
+      </div> -->
+  
+  
+      <!-- <div class="dropdown">
+        <div class="default-option" (click)="toggleDropdown('currency')">
+          <span>Currency <br></span>
+          <span class="dropdown-label">{{ selectedCity || 'Any Currency' }}<fa-icon class="location" [icon]="faLocation"></fa-icon></span>
+        </div>
+        <div class="dropdown-list" *ngIf="isDropdown('currency')">
+          <ul>
+            <li *ngFor="let city of countries | unique:'subregion'" (click)="selectCity(city)">
+              {{ city.capital[0] }}
+            </li>
+          </ul>
+        </div>
+      </div> -->
+
+      <button type="button">Filter</button>
+    </div>
+
+    <div class="cards">
+      <app-countries *ngFor="let country of countries" [country]="country"></app-countries>
+    </div>
+  </section>
+
+  <ul>
+     <li *ngFor="let country of countriesName">
+       {{ country.name.common }}
+     </li>
+  </ul>
+  <!-- <p>regions works!</p> -->
+</body>
