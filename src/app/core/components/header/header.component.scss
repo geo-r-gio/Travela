@@ -1,0 +1,151 @@
+@import '../../../../styles.scss';
+
+.header{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 20px 10px;
+    background: $color-light;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    z-index: 1000;
+    box-sizing: border-box;
+    .left-container {
+        display: inline-flex;
+        margin-right: 210px;
+        .logo{
+            width: auto;
+            height: auto;
+            text-decoration: none;
+            .icon{
+                width: 30px;
+                height: 24px;
+                margin-right: 7px;
+                vertical-align: middle;
+            }
+            span{
+                font-family: $font-primary;
+                // font-size: 14px;
+                font-weight: $font-weight-semibold;
+                color: #2D3134;
+            }
+        }
+        .navbar{
+            margin-left: 60px;
+            a{
+                position: relative;
+                font-family: $font-primary;
+                font-size: 14px;
+                color: #2E476B;
+                font-weight: $font-weight-regular;
+                margin: 0 20px;
+                text-decoration: none;
+                cursor: pointer;
+                &:hover, &:active{
+                    color: #36B0DC;
+                }
+                &::after{
+                    content: '';
+                    position: absolute;
+                    left: 0;
+                    top: 20px;
+                    width: 0;
+                    height: 2px;
+                    background: #36B0DC;
+                    opacity: 0;
+                    transition: width 0.3s ease;
+                }
+                &:hover::after{
+                    opacity: 1;
+                    width: 30%;
+                }
+            }
+        }
+    }
+    .image{
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        margin-left: 50px;
+        cursor: pointer;
+    }
+    .sub-menu-wrap{
+        font-family: $font-primary;
+        position: absolute;
+        top: 100%;
+        right: 10%;
+        width: 308px;
+        .sub-menu{
+            background: $color-light;
+            padding: 20px;
+            margin: 10px;
+            // position: absolute;
+            // bottom: 334px;
+            z-index: 1000;
+            .user-info{
+                display: flex;
+                align-items: center;
+                margin-right: 50px;
+                .info-display{
+                    h2{
+                        font-size: 18px;
+                        font-weight: 300;
+                        margin-bottom: -10px;
+                    }
+                    h3{
+                        font-size: 12px;
+                        font-weight: 200;
+                    }
+                }
+                img{
+                    border-radius: 50%;
+                    margin-left: auto;
+                    margin-right: 15px;
+                }
+            }
+            hr{
+                border: 0;
+                height: 1px;
+                width: 100%;
+                background: $color-disabled-bg;
+                margin: 15px 0 10px;
+            }
+            .sub-menu-link{
+                display: flex;
+                align-items: center;
+                text-decoration: none;
+                color: #000;
+                margin: 12px 0;
+                p{
+                    width: 100%;
+                    &:hover{
+                        font-weight: 600;
+                    }
+                }
+                fa-icon{
+                    font-weight: 300;
+                    // width: 40px;
+                    padding: 8px;
+                    // transition: transform 0.5s;
+                    .icon{
+                        margin-right: 15px;
+                    }
+                    // .arrow{
+                    //     transition: transform 0.5s ease;
+                    //     &:hover{
+                    //         transform: translateX(15px);
+                    //     }
+                    // }
+                }
+                .arrow{
+                    transition: transform 0.5s ease;
+                }
+                &:hover .arrow{
+                    transform: translateX(5px);
+                }
+            }
+        }
+    }
+}

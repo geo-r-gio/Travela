@@ -18,7 +18,7 @@ export class RegionsComponent {
   countries: Country[] =[];
   profile: any[] = [];
 
-  activeDropdown: 'subregion' | 'city' | 'language' | 'currency' | null = null;
+  activeDropdown: 'subregion' | 'city' | null = null;
 
   subregions: subRegion[] = [];
   selectedSubregion: string | null = null;
@@ -53,12 +53,12 @@ export class RegionsComponent {
     });
   }
 
-  toggleDropdown(dropdown: 'subregion') {
+  toggleDropdown(dropdown: 'subregion' | 'city') {
     this.activeDropdown = this.activeDropdown === dropdown ? null : dropdown;
     console.log(this.activeDropdown);
   }
 
-  isDropdown(dropdown: 'subregion'): boolean {
+  isDropdown(dropdown: 'subregion' | 'city'): boolean {
     console.log(this.activeDropdown === dropdown);
     return this.activeDropdown === dropdown;
   }

@@ -1,1 +1,40 @@
-<p>header works!</p>
+<header class="header">
+    <div class="left-container">
+        <a href="#" class="logo">
+            <img class="icon" src="assets/travela-icon.png" alt="Travela Logo">
+            <span>Travela</span>
+        </a>
+    
+        <nav class="navbar">
+            <a href="#">Home</a>
+            <a href="#">Regions</a>
+            <a href="#">Countries</a>
+            <a href="#">Favorites</a>
+        </nav>
+    </div>
+    
+    <img class="image" src="assets/avatar-icon.png" alt="Profile Icon" (click)="toggleMenu()">
+
+    <div class="sub-menu-wrap" *ngIf="isMenuOpen">
+        <div class="sub-menu">
+            <div class="user-info">
+                <img class="image" src="assets/avatar-icon.png" alt="Profile Icon">
+                <div class="info-display">
+                    <h2>Your name</h2>
+                    <h3>yourname&#64;gmail.com</h3>
+                </div>                
+            </div>
+            <hr>
+            <a href="#" class="sub-menu-link">
+                <fa-icon class="icon" [icon]="faUser"></fa-icon>
+                <p>My Profile</p>
+                <fa-icon class="arrow" [icon]="faArrow"></fa-icon>
+            </a>
+            <a href="#" class="sub-menu-link">
+                <fa-icon class="icon" [icon]="faLogout"></fa-icon>
+                <p>Log Out</p>
+                <fa-icon class="arrow" [icon]="faArrow"></fa-icon>
+            </a>
+        </div>
+    </div>
+</header>

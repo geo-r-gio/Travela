@@ -16,6 +16,8 @@ import { EditProfileComponent } from './features/profile/edit-profile/edit-profi
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { tokenInterceptor } from './core/authentication/interceptors/token.interceptor';
 import { SharedModule } from './shared/shared.module';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { MatSelectModule } from '@angular/material/select';
 
 @NgModule({
   declarations: [
@@ -23,7 +25,7 @@ import { SharedModule } from './shared/shared.module';
     HeaderComponent,
     FooterComponent,
     RegionsComponent,
-    CountriesComponent,
+    // CountriesComponent,
     GalleryComponent,
     CountryDetailsComponent,
     ProfileComponent,
@@ -35,8 +37,9 @@ import { SharedModule } from './shared/shared.module';
     ReactiveFormsModule,
     FontAwesomeModule,
     SharedModule,
+    MatSelectModule
   ],
-  providers: [provideHttpClient(withInterceptors([tokenInterceptor]))],
+  providers: [provideHttpClient(withInterceptors([tokenInterceptor])), provideAnimationsAsync()],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
