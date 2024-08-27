@@ -4,16 +4,27 @@ export interface Tokens {
     RefreshToken: string; 
 }
 
-export interface login{
+export interface Login{
     Username: string;
     Password: string;
     RoleName: string;
 }
 
-export interface signup{
+export interface Signup{
     Firstname: string;
     Lastname: string;
     Email: string;
     Password: string;
     RoleName: string;
 }
+
+export interface UserProfile {
+    Id: string;
+    Firstname: string;
+    Lastname: string;
+    Email: string;
+    Username: string;
+    Institution: string | null;
+    IsAdmin: boolean;
+  }
+  
