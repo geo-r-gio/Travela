@@ -36,8 +36,8 @@
                     </small>
                 </div>
                 <div class="form-input radio-btn">
-                    <input formControlName="role" type="radio" value="user"> User
-                    <input formControlName="role" type="radio" value="admin"> Admin
+                    <input formControlName="role" type="radio" value="user"><span>User</span> 
+                    <input formControlName="role" type="radio" value="admin"><span>Admin</span> 
                 </div>
                 <button type="submit" value="Submit" class="app-login-btn" [disabled]="!isFormValid()">{{ isLoginMode ? 'Login' : 'Sign Up'}} <fa-icon [icon]="faArrowRightLong"></fa-icon></button>
                 <span>or continue with</span>
