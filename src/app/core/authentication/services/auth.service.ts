@@ -1,6 +1,6 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { catchError, Observable, Subject, tap, throwError } from 'rxjs';
+import { Observable, Subject, tap } from 'rxjs';
 import { Login, Signup, Tokens, UserProfile } from '@shared/models/user.model';
 import { Router } from '@angular/router';
 import { JwtHelperService } from '@auth0/angular-jwt';
