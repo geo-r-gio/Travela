@@ -1,9 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { faGoogle, faGithub, faFacebook } from '@fortawesome/free-brands-svg-icons';
 import { faArrowRightLong } from '@fortawesome/free-solid-svg-icons';
-import { AuthService } from '../../services/auth.service';
-import { SnackbarService } from '../../../../shared/services/snackbar/snackbar.service';
+import { AuthService } from '@core/authentication/services/auth.service';
+import { SnackbarService } from '@shared/services/snackbar/snackbar.service';
 import { Observable, tap } from 'rxjs';
 import { Router } from '@angular/router';
 
@@ -12,14 +12,14 @@ import { Router } from '@angular/router';
   templateUrl: './auth.component.html',
   styleUrl: './auth.component.scss'
 })
-export class AuthComponent {
+export class AuthComponent implements OnInit {
 
   faGoogle = faGoogle;
   faGithub = faGithub;
   faFacebook = faFacebook;
   faArrowRightLong = faArrowRightLong;
 
-  isLoginMode: Boolean = true;
+  isLoginMode: boolean = true;
   public loginForm! : FormGroup;
   errorMessage: string | null = null;
   successMessage: string | null = null;
@@ -66,12 +66,7 @@ export class AuthComponent {
 
     if (this.isLoginMode) {
       // Handle login
-      const loginData = {
-        email: this.loginForm.value.email,
-        password: this.loginForm.value.password,
-        role: this.loginForm.value.role
-      };
-     
+           
       this.authObs = this.authService.onLogin(email, password, role)
     } else {
       // Handle signup
@@ -88,18 +83,15 @@ export class AuthComponent {
 
     this.authObs.subscribe({
       next: (res) => { 
-        console.log(res) 
         if(!this.isLoginMode){
-          let successMsg = 'Sign Up Successful! Please Login to Continue'
-          this.successMessage = successMsg;
+          this.successMessage = 'Sign Up Successful! Please Login to Continue';
           this.isLoginMode = true;
         } else {
-          let successMsg = 'Login Successful!'
-          this.successMessage = successMsg;
+          this.successMessage = 'Login Successful!';
           
           this.authService.storeToken(res.Login.AccessToken);
           this.authService.storeRefreshToken(res.Login.RefreshToken);
-          this.router.navigate(['home']);
+          this.router.navigate(['countries/home']);
         }
         this.hideSnackbar();
       },
