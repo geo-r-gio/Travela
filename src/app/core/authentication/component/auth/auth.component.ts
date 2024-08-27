@@ -4,7 +4,7 @@ import { faGoogle, faGithub, faFacebook } from '@fortawesome/free-brands-svg-ico
 import { faArrowRightLong } from '@fortawesome/free-solid-svg-icons';
 import { AuthService } from '@core/authentication/services/auth.service';
 import { SnackbarService } from '@shared/services/snackbar/snackbar.service';
-import { Observable, tap } from 'rxjs';
+import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
 
 @Component({
