@@ -13,7 +13,7 @@ export const roleGuard: CanActivateFn = (route, state) => {
     return true;
   } else {
     snackbarService.show('You do not have access to this page.');
-    router.navigate(['home']);
+    router.navigate(['/countries/home']);
     return false;
   }
 };
