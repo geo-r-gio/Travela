@@ -1,0 +1,21 @@
+<div class="page-wrapper">
+    <div class="page-background">
+        <app-snackbar [errorMessage]="errorMessage" *ngIf="errorMessage"></app-snackbar>
+        <div class="profile-info" *ngIf="profile">
+            <img class="image" src="assets/avatar-icon.png" alt="Profile Icon">
+            <h2>{{ profile.Firstname + ' ' + profile.Lastname | titlecase }}</h2>
+            <h3>{{ profile.Email }}</h3>
+        </div>
+        <div class="fileupload-wrapper" *ngIf="isAdmin">
+            <div class="fileupload-container">
+                <div class="img-area">
+                  <fa-icon class="file-upload" [icon]="faFileUpload"></fa-icon>
+                  <h3>Upload Image</h3>
+                  <img [src]="imageURL" *ngIf="imageURL">
+                </div>
+                <button class="select-image" (click)="selectImage()">Select Image</button>
+                <input type="file" #fileInput (change)="onImageUpload($event)" hidden/>
+            </div>
+        </div>
+    </div>
+</div>
