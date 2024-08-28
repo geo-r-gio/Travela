@@ -13,6 +13,7 @@ import { GalleryComponent } from './shared/components/gallery/gallery.component'
 import { CountryDetailsComponent } from './features/country-details/country-details.component';
 import { ProfileComponent } from './features/profile/profile.component';
 import { EditProfileComponent } from './features/profile/edit-profile/edit-profile.component';
+import { provideHttpClient } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -30,9 +31,9 @@ import { EditProfileComponent } from './features/profile/edit-profile/edit-profi
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    FontAwesomeModule
+    FontAwesomeModule    
   ],
-  providers: [],
+  providers: [provideHttpClient()],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

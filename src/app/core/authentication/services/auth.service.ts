@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, Observable, Subject, tap, throwError } from 'rxjs';
-import { Login, Signup, Tokens, UserProfile } from '@shared/models/user.model';
+import { login, signup, Tokens } from '@shared/models/user.model';
 import { Router } from '@angular/router';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { SnackbarService } from '@shared/services/snackbar/snackbar.service';
@@ -23,17 +23,17 @@ export class AuthService {
     })
    }
 
-  onSignUp(data: Signup){
-    return this.http.post<Signup>(`${environment.baseUrl}SignUp()`, data);
+  onSignUp(data: signup){
+    return this.http.post<signup>(`${environment.baseUrl}SignUp()`, data).pipe(catchError(this.handleError));
   }
 
-  onAdminSignUp(data: Signup){
-    return this.http.post<Signup>(`${environment.baseUrl}CreateAdminUser()`, data);
+  onAdminSignUp(data: signup){
+    return this.http.post<signup>(`${environment.baseUrl}CreateAdminUser()`, data).pipe(catchError(this.handleError));
   }
 
   onLogin(email: string, password: string, role: string){
     const data = {Username: email, Password: password, RoleName: role};
-    return this.http.post<Login>(`${environment.baseUrl}Login()`, data);
+    return this.http.post<login>(`${environment.baseUrl}Login()`, data).pipe(catchError(this.handleError));
   }
 
   onLogOut(){
@@ -51,7 +51,6 @@ export class AuthService {
       // Store the new tokens in localStorage
       localStorage.setItem('token', res.AccessToken);
       localStorage.setItem('refreshToken', res.RefreshToken);
-      console.log(res.AccessToken);
       
       this.$refreshTokenReceived.next(true);
     }));
@@ -79,11 +78,23 @@ export class AuthService {
     return decodedToken?.realm_access?.roles.includes('Admin') || false;
   }
 
-  getProfile(): Observable<UserProfile>{
-    return this.http.get<UserProfile>(`${environment.baseUrl}GetProfile()`);
+  getProfile(){
+    return this.http.get(`${environment.baseUrl}GetProfile()`);
   }
 
   isLoggedIn(): boolean{
     return !!localStorage.getItem('token');
+  }
+
+  private handleError(err: any){
+    let signupErrorMsg = 'Email already exists'
+    let loginErrorMsg = 'The provided credentials are not correct'
+    let unknownError = 'An unknown error has occurred'
+    if(err.status === 500){
+      return throwError(() => signupErrorMsg)
+    } else if(err.status === 401){
+      return throwError(() => loginErrorMsg)
+    }
+    return throwError(() => unknownError)
   }
 }
