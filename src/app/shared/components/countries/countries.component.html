@@ -1,10 +1,10 @@
-<a [routerLink]="['home']" routerLinkActive="router-link-active">
+<a [routerLink]="['/countries/country-details', country.name.common]" routerLinkActive="router-link-active">
     <div class="card-item">
-        <!-- <img [src]="country.flag" alt="Flag" class="card-image"> -->
+        <img [src]="country.flags.png" alt="Flag" class="card-image">
         <div class="card-content">
-            <h6 class="country-name">{{country.name}}</h6>
+            <h6 class="country-name">{{ country.name.common }}</h6>
             <p *ngIf="country.region"><span class="label">Region: </span>{{ country.region }}</p>
-            <p *ngIf="country.capital"><span class="label">Capital: </span>{{ country.capital }}</p>
+            <p *ngIf="country.capital"><span class="label">Capital: </span>{{ country.capital[0] }}</p>
         </div>
     </div>
 </a>

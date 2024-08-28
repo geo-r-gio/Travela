@@ -1,9 +1,7 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
-import { AuthService } from '@core/authentication/services/auth.service';
 import { SnackbarService } from '@shared/services/snackbar/snackbar.service';
 import { CountryService } from '@features/countries/services/country/country.service';
 import { faMagnifyingGlass, faLocationDot, faCloudArrowUp, faMapLocationDot, faMapPin, faMoneyBill, faEarthAsia } from '@fortawesome/free-solid-svg-icons';
-import { HttpClient } from '@angular/common/http';
 import { Country } from '@features/countries/models/country.model';
 import { ImageStorageService } from '@shared/services/images/image-storage.service';
 

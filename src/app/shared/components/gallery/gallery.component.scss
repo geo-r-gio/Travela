@@ -1,0 +1,38 @@
+.gallery {  
+    .image-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); 
+      gap: 20px; 
+    }
+  
+    .image-container {
+      width: 100%;
+      height: auto;
+      overflow: hidden;
+      cursor: pointer;
+      img {
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+        border-radius: 10px;
+        transition: transform 0.3s ease;
+      
+        &:hover {
+          transform: scale(1.05);
+        }
+      }
+    }
+
+    @media (max-width: 1200px) {
+        .image-grid {
+          grid-template-columns: repeat(auto-fit, 1fr); 
+        }
+      }
+    
+    @media (max-width: 768px) {
+        .image-grid {
+            grid-template-columns: repeat(auto-fit, 1fr); 
+        }
+    }
+}
+  

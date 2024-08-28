@@ -10,7 +10,6 @@ export class AppComponent {
   constructor(public router : Router) {}
 
   ngOnInit(){
-    this.router.navigate(['home']);
   }
   title = 'travela';
 }

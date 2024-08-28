@@ -1,16 +1,16 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SnackbarComponent } from './components/snackbar/snackbar.component';
-import { UniquePipe } from './pipes/unique.pipe';
 import { CountriesComponent } from './components/countries/countries.component';
 import { RouterModule } from '@angular/router';
+import { GalleryComponent } from './components/gallery/gallery.component';
 
 
 @NgModule({
   declarations: [
     SnackbarComponent,
-    UniquePipe,
-    CountriesComponent
+    CountriesComponent,
+    GalleryComponent
   ],
   imports: [
     CommonModule,
@@ -18,8 +18,8 @@ import { RouterModule } from '@angular/router';
   ],
   exports: [
     SnackbarComponent,
-    UniquePipe,
-    CountriesComponent
+    CountriesComponent,
+    GalleryComponent
   ],
 })
 export class SharedModule { }
