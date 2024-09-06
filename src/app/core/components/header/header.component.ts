@@ -62,9 +62,9 @@ export class HeaderComponent {
 
   isAdmin() {
     if(this.authService.isAdmin()) {
-      this.router.navigate(['/user/admin-profile']);
+      this.router.navigate(['/countries/admin-profile']);
     } else {
-      this.router.navigate(['/user/profile']);
+      this.router.navigate(['/countries/profile']);
     }
   }
 
