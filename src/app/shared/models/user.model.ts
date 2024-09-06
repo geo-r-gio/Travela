@@ -1,21 +1,21 @@
 
 export interface Tokens {
-    AccessToken: string;
-    RefreshToken: string; 
+    accessToken: string;
+    refreshToken: string; 
 }
 
 export interface Login{
-    Username: string;
-    Password: string;
-    RoleName: string;
+    username: string;
+    password: string;
+    roleName: string;
 }
 
 export interface Signup{
-    Firstname: string;
-    Lastname: string;
-    Email: string;
-    Password: string;
-    RoleName: string;
+    firstName: string;
+    lastName: string;
+    email: string;
+    password: string;
+    roleName: string;
 }
 
 export interface UserProfile {
