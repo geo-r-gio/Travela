@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
-import { Country } from '../../../features/countries/models/country.model';
+import { Country } from '@features/countries/models/country.model';
+import { AppRoutes } from '@shared/constants/app-routes.constants';
 
 @Component({
   selector: 'app-countries',
@@ -8,4 +9,6 @@ import { Country } from '../../../features/countries/models/country.model';
 })
 export class CountriesComponent {
   @Input() country!: Country;
+
+  appRoutes = AppRoutes;
 }

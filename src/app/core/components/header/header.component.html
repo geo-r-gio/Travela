@@ -1,17 +1,17 @@
 <header class="header">
     <div class="left-container">
-        <a [routerLink]="['/countries/home']" routerLinkActive="router-link-active" class="logo">
+        <a [routerLink]="[appRoutes.HOME]" routerLinkActive="router-link-active" class="logo">
             <img class="icon" src="assets/travela-icon.png" alt="Travela Logo">
             <span>Travela</span>
         </a>
 
-        <button class="menu-toggle" (click)="toggleMenuBar()" aria-label="Toggle navigation">
+        <button class="menu-toggle" (click)="toggleMenuBar()" aria-label="Toggle navigation" appClickOutside (clickOutside)="closeMenus()">
             <fa-icon class="icon" [icon]="faBars"></fa-icon>
         </button>
     
         <div class="menu" [ngClass]="{'active': isMenuBarOpen}">
             <nav class="navbar" [ngClass]="{'active': isMenuBarOpen}">
-                <a [routerLink]="['/countries/home']" routerLinkActive="router-link-active">Home</a>
+                <a [routerLink]="[appRoutes.HOME]" routerLinkActive="router-link-active" (click)="closeMenus()">Home</a>
                 <a class="regions-nav" (click)="scrollToSection('regions')">Regions</a>
                 <a (click)="scrollToSection('countries')">Countries</a>
                 <a (click)="scrollToSection('gallery')">Gallery</a>
@@ -21,7 +21,9 @@
     </div>
     
     <div class="profile-container">
-        <img class="image" src="assets/avatar-icon.png" alt="Profile Icon" (click)="toggleMenu()" [ngClass]="{'active': isMenuBarOpen}">
+        <img class="image" src="assets/avatar-icon.png" alt="Profile Icon" 
+        (click)="toggleMenu()" [ngClass]="{'active': isMenuBarOpen}"
+        appClickOutside (clickOutside)="closeMenus()">
 
         <div class="sub-menu-wrap" *ngIf="isMenuOpen">
             <div class="sub-menu">
@@ -41,7 +43,6 @@
                 <a (click)="logOut()" class="sub-menu-link">
                     <fa-icon class="icon" [icon]="faLogout"></fa-icon>
                     <p>Log Out</p>
-                    <fa-icon class="arrow" [icon]="faArrow"></fa-icon>
                 </a>
             </div>
         </div>
