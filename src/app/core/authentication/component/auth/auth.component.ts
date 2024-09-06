@@ -53,7 +53,7 @@ export class AuthComponent implements OnInit {
 
   isFormValid() {
     if (this.isLoginMode) {
-      return this.loginForm.get('email')?.valid && this.loginForm.get('password')?.valid && this.loginForm.get('role')?.valid;
+      return this.loginForm.get('email')?.valid && this.loginForm.get('password')?.valid;
     } else {
       return this.loginForm.valid;
     }
