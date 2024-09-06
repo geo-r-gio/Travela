@@ -32,7 +32,7 @@ export class AuthService {
   }
 
   onLogin(email: string, password: string, role: string){
-    const data = {Username: email, Password: password, RoleName: role};
+    const data = {username: email, password: password, roleName: role};
     return this.http.post<Login>(`${environment.baseUrl}Login()`, data);
   }
 
@@ -49,9 +49,8 @@ export class AuthService {
 
     return this.http.post<Tokens>(`${environment.baseUrl}RefreshToken()`, token).pipe(tap((res) => {
       // Store the new tokens in localStorage
-      localStorage.setItem('token', res.AccessToken);
-      localStorage.setItem('refreshToken', res.RefreshToken);
-      console.log(res.AccessToken);
+      localStorage.setItem('token', res.accessToken);
+      localStorage.setItem('refreshToken', res.refreshToken);
       
       this.$refreshTokenReceived.next(true);
     }));
