@@ -1,4 +1,4 @@
-@import '../../../../styles.scss';
+@import 'styles.scss';
 
 .header {
     position: absolute;
@@ -10,7 +10,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    z-index: 1000;
+    z-index: 3;
     box-sizing: border-box;
     .left-container {
         display: inline-flex;
@@ -36,13 +36,13 @@
             display: none;
             background: none;
             border: none;
-            font-size: 24px;
+            font-size: 1.5rem;
             cursor: pointer;
-            @media (max-width: 1040px) {
+            @media (max-width: $screen-auth-md) {
                 display: block;
             }
         }
-        @media (max-width: 1040px) {
+        @media (max-width: $screen-auth-md) {
             padding: 20px;
             justify-content: space-between;
         }
@@ -52,7 +52,7 @@
                 a{
                     position: relative;
                     font-family: $font-primary;
-                    font-size: 14px;
+                    font-size: 0.875rem;
                     color: #2E476B;
                     font-weight: $font-weight-regular;
                     margin: 0 20px;
@@ -82,7 +82,7 @@
                         }
                     }
                 }
-                @media (max-width: 1040px) {
+                @media (max-width: $screen-auth-md) {
                     display: none;
                     flex-direction: column;
                     &.active {
@@ -95,7 +95,7 @@
                     }
                 }
             }
-            @media (max-width: 1040px) {
+            @media (max-width: $screen-auth-md) {
                 position: absolute;
                 right: 0;
                 top: 70px;
@@ -115,11 +115,10 @@
         .image {
             width: 50px;
             height: 50px;
-            margin-left: 250px;
             border-radius: 50%;
             cursor: pointer;
         
-            @media (max-width: 1040px) {
+            @media (max-width: $screen-auth-md) {
                 display: none; 
                 flex-direction: column;
                 position: absolute;
@@ -137,7 +136,7 @@
             top: 100%;
             right: 10%;
             width: 308px;
-            @media (max-width: 1040px) {
+            @media (max-width: $screen-auth-md) {
                 top: calc(100% + 130px);
                 left: calc(100% - 290px);
                 width: fit-content;
@@ -147,19 +146,18 @@
                 background: $color-light;
                 padding: 20px;
                 margin: 10px;
-                z-index: 1000;
                 .user-info{
                     display: flex;
                     align-items: center;
                     margin-right: 50px;
                     .info-display{
                         h2{
-                            font-size: 18px;
+                            font-size: 1.125rem;
                             font-weight: 300;
                             margin-bottom: -10px;
                         }
                         h3{
-                            font-size: 12px;
+                            font-size: $font-size-small;
                             font-weight: 200;
                         }
                     }
@@ -182,6 +180,7 @@
                     text-decoration: none;
                     color: $color-black;
                     margin: 12px 0;
+                    cursor: pointer;
                     p{
                         width: 100%;
                         margin: 0;
@@ -210,13 +209,13 @@
 }
 
 
-@media (max-width: 1200px) {
+@media (max-width: $screen-header-lg) {
     .header {
         padding: 20px 100px;
     }
 }
 
-@media (max-width: 1040px) {
+@media (max-width: $screen-auth-md) {
     .header {
         display: block;
         padding: 20px 50px;

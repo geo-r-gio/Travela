@@ -1,11 +1,12 @@
-@import '../../../../styles.scss';
+@import 'styles.scss';
 
 .footer {
-    position: absolute;
+    position: relative;
+    bottom: 0;
     width: 100%;
     padding: 20px 170px;
     background: $color-light;
-    z-index: 1000;
+    z-index: 3;
     display: flex;
     align-items: center;
     justify-content: space-around;
@@ -34,7 +35,7 @@
             span {
                 font-family: $font-primary;
                 font-weight: $font-weight-semibold;
-                font-size: 16px;
+                font-size: 1rem;
                 color: #2D3134;
             }
         }
@@ -42,18 +43,18 @@
         span {
             font-family: $font-primary;
             font-weight: $font-weight-light;
-            font-size: 14px;
+            font-size: 0.875rem;
             color: #2D3134;
             text-decoration: none;
             white-space: nowrap;
         }
     }
 
-    @media (max-width: 1200px) {
+    @media (max-width: $screen-header-lg) {
         padding: 20px 100px;
     }
 
-    @media (max-width: 1040px) {
+    @media (max-width: $screen-auth-md) {
         padding: 20px 50px;
     }
 }

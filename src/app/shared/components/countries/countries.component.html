@@ -1,4 +1,4 @@
-<a [routerLink]="['/countries/country-details', country.name.common]" routerLinkActive="router-link-active">
+<a [routerLink]="[appRoutes.COUNTRIES, country.name.common]" routerLinkActive="router-link-active">
     <div class="card-item">
         <img [src]="country.flags.png" alt="Flag" class="card-image">
         <div class="card-content">
