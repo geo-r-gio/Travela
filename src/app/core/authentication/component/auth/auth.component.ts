@@ -91,7 +91,7 @@ export class AuthComponent implements OnInit {
           
           this.authService.storeToken(res.Login.AccessToken);
           this.authService.storeRefreshToken(res.Login.RefreshToken);
-          this.router.navigate(['countries/home']);
+          this.router.navigate(['/home']);
         }
         this.hideSnackbar();
       },
