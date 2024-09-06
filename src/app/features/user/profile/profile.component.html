@@ -1,0 +1,50 @@
+<div class="page-wrapper">
+    <section class="profile">
+        <div class="page-background">
+            <app-snackbar [errorMessage]="errorMessage" *ngIf="errorMessage"></app-snackbar>
+            <div class="profile-info" *ngIf="profile">
+                <img class="image" src="assets/avatar-icon.png" alt="Profile Icon">
+                <h2>{{ profile.Firstname + ' ' + profile.Lastname | titlecase }}</h2>
+                <h3>{{ profile.Email }}</h3>
+            </div>
+    
+            <section class="favorites" *ngIf="isFavorite">
+                <div class="title">
+                    <h1>Favorites</h1>
+                </div> 
+    
+                <swiper-container
+                    navigation="true"
+                    pagination-dynamic-bullets="true"
+                    slides-per-view="4"
+                    grid-rows="1"
+                    grid-fill="row"
+                    [breakpoints]="breakpoints"
+                >
+                    <swiper-slide *ngFor="let country of favorites()">
+                        <div class="cards">
+                        <app-countries [country]="country"></app-countries>
+                        </div>
+                    </swiper-slide>
+                </swiper-container>
+            </section>
+    
+        </div>
+    </section>
+    
+
+    <section class="fileupload" *ngIf="isAdmin">
+        <div class="fileupload-wrapper" >
+            <div class="fileupload-container">
+                <div class="img-area">
+                <fa-icon class="file-upload" [icon]="faFileUpload"></fa-icon>
+                <h3>Upload Image</h3>
+                <img [src]="imageURL" *ngIf="imageURL">
+                </div>
+                <button class="select-image" (click)="selectImage()">Select Image</button>
+                <input type="file" #fileInput (change)="onImageUpload($event)" hidden/>
+            </div>
+        </div>
+    </section>
+    
+</div>

@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { faPlaneDeparture, faCircleInfo } from '@fortawesome/free-solid-svg-icons';
+import { faHeart } from '@fortawesome/free-regular-svg-icons';
 import { CountryService } from '@features/countries/services/country/country.service';
 import { Country } from '@features/countries/models/country.model';
 import { ActivatedRoute } from '@angular/router';
 import { mergeMap, Observable, of, tap } from 'rxjs';
 import { ImageStorageService } from '@shared/services/images/image-storage.service';
+import { FavoritesService } from '@features/countries/services/favorites/favorites.service';
 
 
 @Component({
@@ -14,6 +16,7 @@ import { ImageStorageService } from '@shared/services/images/image-storage.servi
 })
 export class CountryDetailsComponent implements OnInit {
 
+  faHeart = faHeart;
   faPlane = faPlaneDeparture;
   faInfo = faCircleInfo;
 
@@ -42,7 +45,8 @@ export class CountryDetailsComponent implements OnInit {
     },
   }
 
-  constructor(private countryService : CountryService, private route : ActivatedRoute, private imageStorageService: ImageStorageService) {}
+  constructor(private countryService : CountryService, private route : ActivatedRoute, 
+    private imageStorageService: ImageStorageService, private favoritesService : FavoritesService) {}
 
   ngOnInit(): void {
       this.route.params.subscribe(params => {
@@ -75,6 +79,18 @@ export class CountryDetailsComponent implements OnInit {
 
   async onCountrySelect(): Promise<void> {
     this.images = await this.imageStorageService.getImagesByCountry(this.selectedCountry);
+  }
+
+  addToFavorites(country: Country): void {
+    if(this.favoritesService.isFavorite(country)) {
+      this.favoritesService.removeFavorite(country);
+    } else {
+      this.favoritesService.addFavorite(country);
+    }
+  }
+
+  isFavorite(country: Country): boolean {
+    return this.favoritesService.isFavorite(country);
   }
 
 }

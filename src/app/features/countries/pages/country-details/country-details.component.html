@@ -3,6 +3,10 @@
     <section class="country" *ngIf="country$ | async as country">
         <div class="title">
             <h1>{{ country.name.common }}</h1>
+            <fa-icon class="favorite" [icon]="faHeart" 
+            (click)="addToFavorites(country)" 
+            [ngClass]="{'active': isFavorite(country)}">
+            </fa-icon>
         </div>
         <div class="country-text">
             <div class="left-tag">
@@ -82,13 +86,11 @@
                     <div class="second">
                         <div class="currency">
                             <p>Currency</p>
-                            <h3 *ngIf="currencyName.length === 1">{{ currencyName[0] }}</h3>
-                            <h3 *ngIf="currencyName.length > 1">{{ currencyName.join(', ') }}</h3>
+                            <h3 *ngIf="currencyName.length >= 1">{{ currencyName[0] }}</h3>
                         </div>
                         <div class="symbol">
                             <p>Symbol</p>
-                            <h3 *ngIf="currencyName.length === 1">{{ currencySymbol[0] }}</h3>
-                            <h3 *ngIf="currencyName.length > 1">{{ currencySymbol.join(', ') }}</h3>
+                            <h3 *ngIf="currencyName.length >= 1">{{ currencySymbol[0] }}</h3>
                         </div>
                     </div>
                     <div class="third">

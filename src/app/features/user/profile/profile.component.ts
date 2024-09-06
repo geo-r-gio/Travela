@@ -1,4 +1,4 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Component, ElementRef, Signal, ViewChild } from '@angular/core';
 import { AuthService } from '@core/authentication/services/auth.service';
 import { CountryService } from '@features/countries/services/country/country.service';
 import { UserProfile } from '@shared/models/user.model';
@@ -6,6 +6,7 @@ import { ImageStorageService } from '@shared/services/images/image-storage.servi
 import { SnackbarService } from '@shared/services/snackbar/snackbar.service';
 import { faCloudArrowUp } from '@fortawesome/free-solid-svg-icons';
 import { Country } from '@features/countries/models/country.model';
+import { FavoritesService } from '@features/countries/services/favorites/favorites.service';
 
 @Component({
   selector: 'app-profile',
@@ -25,11 +26,29 @@ export class ProfileComponent {
 
   isAdmin: boolean = false;
 
+  favorites!: Signal<Country[]>;
+  isFavorite: boolean = false;
+
+  breakpoints = {
+    1250: {
+      slidesPerView: 4
+    },
+    990: {
+      slidesPerView: 3
+    },
+    835: {
+      slidesPerView: 2
+    },
+    200: {
+      slidesPerView: 1
+    },
+  }
+
   constructor(private authService : AuthService, private snackbarService : SnackbarService, 
-    private imageStorageService : ImageStorageService, private countryService : CountryService){
+    private imageStorageService : ImageStorageService, private countryService : CountryService, private favoritesService : FavoritesService){
     this.getProfile();
     this.fetchCountries();
-
+    
     this.authService.$refreshTokenReceived.subscribe((res) => {
       this.getProfile();
     })
@@ -37,13 +56,15 @@ export class ProfileComponent {
 
   ngOnInit(){
     this.isAdmin = this.authService.isAdmin();
-
+    this.favorites = this.favoritesService.getFavorites();
+    this.isFavorite = this.favorites().length > 0;
+    
     this.snackbarService.snackbarState
     .subscribe(message => {
       this.errorMessage = message;
       this.hideSnackbar(); 
     });
-  }
+  }  
 
   getProfile(){  
     this.authService.getProfile().subscribe((data: UserProfile) => {
