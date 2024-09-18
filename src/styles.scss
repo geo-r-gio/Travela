@@ -1,1 +1,177 @@
-/* You can add global styles to this file, and also import other style files */
+// Import Google Fonts
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap');
+
+// Global Variables
+$font-primary: 'Poppins', sans-serif;
+$font-secondary: 'JetBrains Mono', monospace;
+
+$color-primary: #D885A3;
+$color-secondary: #C0DBEA;
+$color-accent: #c43c6e;
+$color-dark: #333;
+$color-light: #fff;
+$color-border: #ccc;
+$color-icon: #427692;
+$color-icon-border: #6096B4;
+$color-error: red;
+$color-disabled-bg: #ccc;
+$color-disabled-text: #666;
+$color-snackbar-error: #E74C3C;
+$color-snackbar-success: #1ABC9C;
+$color-title-background: #E2EBF1;
+$color-tag: #3078AD;
+$color-header3: #CBDDEA;
+$color-black: #000000;
+$color-button: #49B2E4;
+$color-button-hover: #266C8C;
+$color-dropdown: #2D3134;
+
+// Screen Widths
+$screen-auth-xs: 425px;
+$screen-auth-sm: 730px;
+$screen-auth-md: 1040px;
+$screen-auth-lg: 1250px;
+
+$screen-header-lg: 1200px;
+
+$screen-country-sm: 490px;
+$screen-country-sm2: 650px;
+$screen-country-sm3: 590px;
+$screen-country-sm4: 560px;
+$screen-country-sm5: 530px;
+$screen-country-sm6: 640px;
+$screen-country-sm7: 600px;
+$screen-country-md: 925px;
+$screen-country-md2: 835px;
+$screen-country-md3: 750px;
+$screen-country-md4: 700px;
+$screen-country-md5: 990px;
+$screen-country-lg1: 1225px;
+$screen-country-lg2: 1250px;
+$screen-country-lg3: 1125px;
+$screen-country-lg4: 1440px;
+
+$screen-home-sm1: 768px;
+$screen-home-sm2: 480px;
+$screen-home-sm3: 470px;
+$screen-home-sm4: 680px;
+$screen-home-sm5: 540px;
+$screen-home-lg1: 1280px;
+$screen-home-lg2: 1130px;
+$screen-home-lg3: 1370px;
+
+$screen-common-sm1: 340px;
+$screen-common-sm2: 410px;
+$screen-common-sm3: 430px;
+$screen-common-sm4: 500px;
+$screen-common-sm5: 510px;
+$screen-common-sm6: 570px;
+$screen-common-sm7: 630px;
+$screen-common-sm8: 670px;
+$screen-common-md1: 810px;
+$screen-common-md2: 930px;
+
+$screen-single-sm1: 505px;
+$screen-single-md1: 710px;
+$screen-single-md2: 780px;
+$screen-single-md3: 800px;
+$screen-single-md4: 920px;
+$screen-single-md5: 980px;
+$screen-single-lg1: 1100px;
+$screen-single-lg2: 1130px;
+$screen-single-lg3: 1150px;
+$screen-single-lg4: 1204px;
+$screen-single-lg5: 1210px;
+$screen-single-lg6: 1290px;
+$screen-single-lg7: 1330px;
+$screen-single-lg8: 1500px;
+
+// Font Weights
+$font-weight-light: 300;
+$font-weight-regular: 400;
+$font-weight-medium: 500;
+$font-weight-semibold: 600;
+$font-weight-bold: 700;
+
+// Font Sizes
+$font-size-xs: 0.625rem;
+$font-size-small: 0.75rem;
+$font-size-medium: 1rem;
+$font-size-large: 1.25rem;
+
+// Margin
+$margin-small: 10px;
+
+// Padding
+$padding-page: 0px 170px;
+
+// Button Styles
+@mixin buttonSize() {
+  align-self: center;
+  padding: 10px 45px;
+  border: 1px solid transparent;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+@mixin titleFont() {
+  font-family: $font-primary;
+  display: contents;
+  white-space: nowrap;
+  font-size: 42px;
+  font-weight: $font-weight-semibold;
+  @media (max-width: 1130px) {
+      font-size: 36px;
+  }
+
+  @media (max-width: 690px) {
+      font-size: 30px;
+  }
+
+  @media (max-width: 390px) {
+      font-size: 24px;
+  }
+}
+
+@mixin paragraphFont() {
+  font-size: 12px;
+  color: $color-black;
+  opacity: 35%;
+}
+
+@mixin headerFont() {
+  font-size: 22px;
+  color: $color-black;
+  margin-top: -14px;
+
+  @media (max-width: 1125px) {
+    font-size: 1.2em;
+  }
+
+  @media (max-width: 730px) {
+      font-size: 1em;
+  }
+
+  @media (max-width: 490px) {
+      font-size: 0.8em;
+  }
+}
+
+@mixin popupDisplay () {
+  transform: translateX(-50%);
+  background: #333;
+  color: #fff;
+  padding: 5px 10px;
+  border-radius: 5px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+  z-index: 5;
+}
+
+body{
+    margin: 0px;
+    overflow-x: hidden;
+    background: #F5F5F5;
+}

@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { ReactiveFormsModule } from '@angular/forms';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -11,6 +13,7 @@ import { GalleryComponent } from './shared/components/gallery/gallery.component'
 import { CountryDetailsComponent } from './features/country-details/country-details.component';
 import { ProfileComponent } from './features/profile/profile.component';
 import { EditProfileComponent } from './features/profile/edit-profile/edit-profile.component';
+import { provideHttpClient } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -26,9 +29,11 @@ import { EditProfileComponent } from './features/profile/edit-profile/edit-profi
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ReactiveFormsModule,
+    FontAwesomeModule    
   ],
-  providers: [],
+  providers: [provideHttpClient()],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
