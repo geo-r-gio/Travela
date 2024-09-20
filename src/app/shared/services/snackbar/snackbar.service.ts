@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Subject } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +9,6 @@ export class SnackbarService {
   snackbarState = this.snackbarSubject.asObservable();
 
   show(message: string) {
-    console.log('SnackbarService emitting message:', message);
     this.snackbarSubject.next(message);
   }
 

@@ -1,0 +1,217 @@
+<div class="page-wrapper">
+    <div class="color"></div>
+    <section class="country" *ngIf="country$ | async as country">
+        <div class="title">
+            <h1>{{ country.name.common }}</h1>
+        </div>
+        <div class="country-text">
+            <div class="left-tag">
+                <div class="left-title">
+                    <h2>Travela</h2>
+                    <img src="assets/AirplaneTilt.png" alt="Airplane">
+                </div>
+                <div class="right-title">
+                    <h3>economy</h3>
+                    <h3>boarding pass</h3>
+                </div>
+            </div>
+
+            <div class="content">
+                <div class="first-line">
+                    <div class="left-line">
+                        <div class="left">
+                            <p>Departing from</p>
+                            <h3>BEI</h3>
+                        </div>
+                        <fa-icon class="plane" [icon]="faPlane"></fa-icon>
+                        <div class="right">
+                            <p>Arriving at</p>
+                            <h3>{{ country.cca3 }}</h3>
+                        </div>
+                    </div>
+                    <div class="right-line">
+                        <p>CCA3</p>
+                        <h3>{{ country.cca3 }}</h3>
+                    </div>
+                </div>
+    
+                <div class="first-col">
+                    <div class="first">
+                        <p>Native Name</p>
+                        <h3>{{ country.name.common }}</h3>
+                    </div>
+                    <div class="second">
+                        <p>Capital</p>
+                        <h3>{{ country.capital?.[0] }}</h3>
+                    </div>
+                    <div class="third">
+                        <p>Population</p>
+                        <h3>{{ country.population | number:'1.0' }}</h3>
+                    </div>
+                </div>
+    
+                <div class="second-col">
+                    <div class="first">
+                        <p>Region</p>
+                        <h3>{{ country.region }}</h3>
+                    </div>
+                    <div class="second">
+                        <div class="languages">
+                            <p>Languages</p>
+                            <div class="info-icon" *ngIf="countryLanguages.length > 1">
+                                <fa-icon class="info" [icon]="faInfo"></fa-icon>
+                                <div class="popup">
+                                    <h3>{{ countryLanguages.join(', ') }}</h3>
+                                </div>
+                            </div>
+                        </div>
+                        <h3 *ngIf="countryLanguages.length >= 1">{{ countryLanguages[0] }}</h3>
+                        
+                    </div>
+                    <div class="third">
+                        <p>Area</p>
+                        <h3>{{ country.area | number:'1.0' }}</h3>
+                    </div>
+                </div>
+    
+                <div class="third-col">
+                    <div class="first">
+                        <p>Sub Region</p>
+                        <h3>{{ country.subregion ? country.subregion : country.region }}</h3>
+                    </div>
+                    <div class="second">
+                        <div class="currency">
+                            <p>Currency</p>
+                            <h3 *ngIf="currencyName.length === 1">{{ currencyName[0] }}</h3>
+                            <h3 *ngIf="currencyName.length > 1">{{ currencyName.join(', ') }}</h3>
+                        </div>
+                        <div class="symbol">
+                            <p>Symbol</p>
+                            <h3 *ngIf="currencyName.length === 1">{{ currencySymbol[0] }}</h3>
+                            <h3 *ngIf="currencyName.length > 1">{{ currencySymbol.join(', ') }}</h3>
+                        </div>
+                    </div>
+                    <div class="third">
+                        <p>Top Level Domains</p>
+                        <h3>{{ country.tld?.[0] }}</h3>
+                    </div>
+                </div>
+            </div>
+
+            
+
+            <div class="right-tag">
+                <div class="top">
+                   <div class="top-container">
+                    <div class="top-title">
+                        <img src="assets/AirplaneTilt.png" alt="Airplane">
+                        <h3>Travela</h3>                        
+                    </div>
+                    <h3>economy</h3>
+                   </div>
+                </div>
+
+                <div class="col">
+                    <div class="first">
+                        <p>Timezones</p>
+                        <h3>{{ country.timezones[0] }}</h3>
+                    </div>
+                    <div class="second">
+                        <p>Continent</p>
+                        <h3>{{ country.continents[0] }}</h3>
+                    </div>
+                    <div class="third">
+                        <img class="card-img" [src]="country.flags.png" alt="country.name.common + 'Flag'">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="country-responsive" *ngIf="country$ | async as country">
+        <div class="country-flag">
+            <img class="flag-img" [src]="country.flags.png" alt="{{ country.name.common }} Flag">
+        </div>
+        <div class="country-info">
+            <h1 class="country-name">{{ country.name.common }}</h1>
+            <div class="info-row">
+                <p>Capital:</p>
+                <h3>{{ country.capital?.[0] }}</h3>
+            </div>
+            <div class="info-row">
+                <p>Population:</p>
+                <h3>{{ country.population | number:'1.0' }}</h3>
+            </div>
+            <div class="info-row">
+                <p>Region:</p>
+                <h3>{{ country.region }}</h3>
+            </div>
+            <div class="info-row">
+                <p>Sub Region:</p>
+                <h3>{{ country.subregion ? country.subregion : country.region }}</h3>
+            </div>
+            <div class="info-row">
+                <p>Currency:</p>
+                <h3 *ngIf="currencyName.length === 1">{{ currencyName[0] }}</h3>
+                <h3 *ngIf="currencyName.length > 1">{{ currencyName.join(', ') }}</h3>
+            </div>
+            <div class="info-row">
+                <p>Languages:</p>
+                <h3 *ngIf="countryLanguages.length === 1">{{ countryLanguages[0] }}</h3>
+                <h3 *ngIf="countryLanguages.length > 1">{{ countryLanguages.join(', ') }}</h3>
+            </div>
+            <div class="info-row">
+                <p>Area:</p>
+                <h3>{{ country.area | number:'1.0' }}</h3>
+            </div>
+            <div class="info-row">
+                <p>Top Level Domain:</p>
+                <h3>{{ country.tld?.[0] }}</h3>
+            </div>
+            <div class="info-row">
+                <p>Continent:</p>
+                <h3>{{ country.continents[0] }}</h3>
+            </div>
+            <div class="info-row">
+                <p>Timezones:</p>
+                <h3>{{ country.timezones[0] }}</h3>
+            </div>
+        </div>
+    </section>
+
+    <section class="countries-info" *ngIf="country$ | async as country">
+        <img class="line" src="assets/line.png">
+        <h3>{{ country.flags.alt }}</h3>
+    </section>
+
+    <section class="gallery" *ngIf="country$ | async as country">
+        <div class="title">
+            <h1>Gallery</h1>
+          </div>    
+          <h3>Beuatiful Destinations In {{ country.name.common }}</h3>
+
+          <app-gallery *ngIf="selectedCountry" [images]="images" [lazyload]="images" [title]="selectedCountry + ' Gallery'"></app-gallery>
+    </section>
+
+    <section class="neighboring-countries" *ngIf="borderCountries$ | async; let borderCountries">
+        <div class="title">
+        <h1>Border Countries</h1>
+        </div>   
+                        
+        <swiper-container
+            navigation="true"
+            pagination-dynamic-bullets="true"
+            slides-per-view="4"
+            grid-rows="1"
+            grid-fill="row"
+            [breakpoints]="breakpoints"            
+        >
+            <swiper-slide *ngFor="let borderCountry of borderCountries">
+                <div class="cards">
+                    <app-countries [country]="borderCountry"></app-countries>
+                </div>
+            </swiper-slide>
+        </swiper-container>
+        
+    </section>
+</div>

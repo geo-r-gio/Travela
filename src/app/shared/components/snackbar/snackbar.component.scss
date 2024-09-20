@@ -1,18 +1,28 @@
-@import '../../../../styles.scss';
+@import 'styles.scss';
 
+.snackbar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    left: 0;
+    right: 0;
+}
 .sb{
     min-width: 350px;
-    margin-left: -125px;
     text-align: center;
     border-radius: 2px;
     padding: 16px;
     border-radius: 5px;
     position: fixed;
-    z-index: 1000;
-    left: 50%;
+    z-index: 3;
     top: 40px;
     -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
     animation: fadein 0.5s, fadeout 0.5s 2.5s;
+
+    @media (max-width: $screen-common-sm2) {
+        min-width: 250px;
+        font-size: 0.875rem;
+    }
 }
 
 .sb-error{

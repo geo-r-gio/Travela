@@ -67,6 +67,7 @@ export class AuthComponent implements OnInit {
     if (this.isLoginMode) {
       // Handle login
            
+           
       this.authObs = this.authService.onLogin(email, password, role)
     } else {
       // Handle signup
@@ -91,7 +92,7 @@ export class AuthComponent implements OnInit {
           
           this.authService.storeToken(res.Login.AccessToken);
           this.authService.storeRefreshToken(res.Login.RefreshToken);
-          this.router.navigate(['/home']);
+          this.router.navigate(['countries/home']);
         }
         this.hideSnackbar();
       },

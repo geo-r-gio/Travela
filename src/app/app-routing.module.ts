@@ -1,8 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AuthComponent } from './core/authentication/component/auth/auth.component';
-import { authGuard } from './core/authentication/guards/auth.guard';
-import { roleGuard } from './core/authentication/guards/role.guard';
+import { authGuard } from '@core/authentication/guards/auth.guard';
 
 const routes: Routes = [
   {
@@ -15,14 +13,9 @@ const routes: Routes = [
     loadChildren: () => import('./core/authentication/component/auth/auth.module').then((m) => m.AuthModule),
   },
   {
-    path: 'home',
+    path: 'countries',
     canActivate: [authGuard],
-    loadChildren: () => import('./features/home/home.module').then((m) => m.HomeModule),
-  },
-  {
-    path: 'country-details',
-    canActivate: [roleGuard],
-    loadChildren: () => import('./features/country-details/country-details.module').then((m) => m.CountryDetailsModule),
+    loadChildren: () => import('./features/countries/countries.module').then((m) => m.CountriesModule),
   }
 ];
 

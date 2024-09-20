@@ -1,0 +1,188 @@
+<div class="page-wrapper">
+  <div class="color"></div>
+  <app-snackbar [errorMessage]="errorMessage" *ngIf="errorMessage"></app-snackbar>
+  <section class="home">
+    <div class="home-text">
+      <h1>Discover Your <br> Next <br> Adventure</h1>
+      <p>Welcome to Travela, your ultimate guide to exploring the 
+        world. Whether you're a seasoned traveler or planning 
+        your first big adventure, we provide you with everything 
+        you need to know about every country on the planet.</p>
+    </div>
+    <div class="home-image">
+      <img src="assets/destination-pana.png">
+    </div>
+  </section>
+
+  <section class="region" id="regions">
+    <div class="title">
+      <h1>Regions</h1>
+    </div>    
+    <h3>Filter By Continents</h3>
+    <div class="regions-map">
+      <img class="map" src="assets/map-bg.png">
+      <img class="line" src="assets/line.png">
+
+      <div class="continent-container north-america-container">
+        <img class="north-america" src="assets/north-america.png" alt="North America" (click)="filterByRegion('Americas')">
+        <div class="popup">North America</div>
+      </div>
+
+      <div class="continent-container south-america-container">
+        <img class="south-america" src="assets/south-america.png" alt="South America" (click)="filterByRegion('Americas')">
+        <div class="popup">South America</div>
+      </div>
+
+      <div class="continent-container africa-container">
+        <img class="africa" src="assets/africa.png" alt="Africa" (click)="filterByRegion('Africa')">
+        <div class="popup">Africa</div>
+      </div>
+
+      <div class="continent-container europe-container">
+        <img class="europe" src="assets/europe.png" alt="Europe" (click)="filterByRegion('Europe')">
+        <div class="popup">Europe</div>
+      </div>
+
+      <div class="continent-container asia-container">
+        <img class="asia" src="assets/asia.png" alt="Asia" (click)="filterByRegion('Asia')">
+        <div class="popup">Asia</div>
+      </div>
+
+      <div class="continent-container oceania-container">
+        <img class="oceania" src="assets/oceania.png" alt="Oceania" (click)="filterByRegion('Oceania')">
+        <div class="popup">Oceania</div>
+      </div>
+      
+    </div>
+  </section>
+
+  <section class="countries" id="countries">
+      <div class="title">
+        <h1>Countries</h1>
+      </div>   
+      <div class="search">
+        <div class="search-box">
+          <input type="text" placeholder="Search..." [(ngModel)]="searchQuery" (ngModelChange)="applyFilters()">
+          <a (click)="applyFilters()"><fa-icon class="search" [icon]="faSearch"></fa-icon></a>
+        </div> 
+  
+        <button type="button" (click)="toggleFilterBox()" [ngClass]="{'active': isFilterBoxVisible}">Filter</button>
+      </div>
+           
+      <div class="filter-box" [ngClass]="{'active': isFilterBoxVisible}">
+        <!-- Region Dropdown -->
+        <div class="dropdown" [ngClass]="{'hidden': !isScreen1}">
+          <div class="default-option">
+            <label for="region">Region</label>
+            <span class="dropdown-label">{{ selectedRegion || 'Any Region' }}<fa-icon class="location" [icon]="faRegion"></fa-icon></span>
+          </div>
+          <select id="region" [(ngModel)]="selectedRegion">
+            <option class="dropdown-list" value="">All</option>
+            <option class="dropdown-list" *ngFor="let region of regions" [value]="region">{{ region }}</option>
+          </select>
+        </div>
+
+        <!-- Subregion Dropdown -->
+        <div class="dropdown">
+          <div class="default-option">
+            <label for="subregion">Sub Region</label>
+            <span class="dropdown-label">{{ selectedSubregion || 'Any City' }}<fa-icon class="location" [icon]="faLocation"></fa-icon></span>
+          </div>
+          <select id="subregion" [(ngModel)]="selectedSubregion">
+            <option class="dropdown-list" value="">All</option>
+            <option class="dropdown-list" *ngFor="let subregion of subregions" [value]="subregion">{{ subregion }}</option>
+          </select>
+        </div>
+        
+    
+        <!-- Capital City Dropdown -->
+        <div class="dropdown">
+          <div class="default-option">
+            <label for="capital">Capital City</label>
+            <span class="dropdown-label">{{ selectedCapital || 'Any City' }}<fa-icon class="location" [icon]="faPin"></fa-icon></span>
+          </div>
+          <select id="capital" [(ngModel)]="selectedCapital">
+            <option class="dropdown-list" value="">All</option>
+            <option class="dropdown-list" *ngFor="let capital of capitals" [value]="capital">{{ capital }}</option>
+          </select>
+        </div>
+        
+    
+        <!-- Currencies Dropdown -->
+        <div class="dropdown">
+          <div class="default-option">
+            <label for="currency">Currency</label>
+            <span class="dropdown-label">{{ selectedCurrency || 'Any Currency' }}<fa-icon class="location" [icon]="faMoney"></fa-icon></span>
+          </div>
+          <select id="currency" [(ngModel)]="selectedCurrency">
+            <option class="dropdown-list" value="">All</option>
+            <option class="dropdown-list" *ngFor="let currency of currencies" [value]="currency">{{ currency }}</option>
+          </select>
+        </div>
+        
+    
+        <!-- Languages Dropdown -->
+        <div class="dropdown">
+          <div class="default-option">
+            <label for="language">Language</label>
+            <span class="dropdown-label">{{ selectedLanguage || 'Any Language' }}<fa-icon class="location" [icon]="faLanguage"></fa-icon></span>
+          </div>
+          <select id="language" [(ngModel)]="selectedLanguage">
+            <option class="dropdown-list" value="">All</option>
+            <option class="dropdown-list" *ngFor="let language of languages" [value]="language">{{ language }}</option>
+          </select>
+        </div>
+
+        <button type="button" (click)="applyFilters()">Filter</button>
+        
+      </div>
+      
+    <swiper-container
+      navigation="true"
+      pagination-dynamic-bullets="true"
+      slides-per-view="4"
+      grid-rows="2"
+      grid-fill="row"
+      [breakpoints]="breakpoints"
+    >
+      <swiper-slide *ngFor="let country of filteredCountries">
+        <div class="cards">
+          <app-countries [country]="country"></app-countries>
+        </div>
+      </swiper-slide>
+    </swiper-container>
+    
+  </section>
+
+  <section class="gallery" id="gallery">
+    <div class="title">
+      <h1>Our Gallery</h1>
+    </div>    
+    <h3>Beuatiful Destinations Around The World</h3>
+
+    <div class="countries-btns">
+      
+      <swiper-container
+        navigation="true"
+        pagination-dynamic-bullets="true"
+        slides-per-view="4"
+        grid-rows="1"
+        grid-fill="row"
+        [breakpoints]="breakpoints2"
+      >
+        <swiper-slide *ngFor="let country of countries">
+          <button class="countries-font" 
+                  [ngClass]="{'active': isCountrySelected(country.name.common)}" 
+                  (click)="onCountrySelect(country.name.common)">
+            <span>{{ country.name.common }}</span>
+          </button>
+        </swiper-slide>
+      </swiper-container>
+
+    </div>
+
+    <app-gallery *ngIf="selectedCountry" [images]="images" [lazyload]="images" [title]="selectedCountry + ' Gallery'"></app-gallery>
+
+  </section>
+
+</div>
