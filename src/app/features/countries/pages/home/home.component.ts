@@ -151,6 +151,7 @@ export class HomeComponent {
 
   applyFilters(): void {
     this.filteredCountries = this.filterCountries();
+    
   }
 
   checkScreenSize1(): void {

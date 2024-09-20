@@ -7,14 +7,12 @@ import { HomeComponent } from './pages/home/home.component';
 import { CountryDetailsComponent } from './pages/country-details/country-details.component';
 import { FormsModule } from '@angular/forms';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { ProfileComponent } from './pages/profile/profile.component';
 
 
 @NgModule({
   declarations: [
     HomeComponent,
     CountryDetailsComponent,
-    ProfileComponent,
   ],
   imports: [
     CommonModule,

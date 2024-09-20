@@ -1,0 +1,279 @@
+@import 'styles.scss';
+
+
+.page-wrapper {
+    background-color: $color-light;
+    position: relative;
+    min-height: 100vh;
+
+    .profile {
+        padding-bottom: 110px;
+        .page-background {
+            width: 100vw;
+            background-image: url("/assets/wave-haikei.svg");
+            background-size: cover;
+            padding: 90px 0px;
+        
+            .profile-info{
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                position: relative;
+                top: 140px;
+        
+                .image {
+                    width: 120px;
+                    border-radius: 50%;
+                }
+        
+                h2 {
+                    font-size: 2.5rem;
+                }
+        
+                h3 {
+                    font-weight: $font-weight-medium;
+                    margin: 0;
+                }
+            }
+
+            .favorites{
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                position: relative;
+                padding: $padding-page;
+                top: 25vh;
+                .title{
+                    background: $color-title-background;
+                    padding: 5px 35vw;
+                    h1{
+                        display: contents;
+                        font-size: 2.625rem;
+                        font-weight: $font-weight-semibold;
+                        @media (max-width: $screen-home-lg2) {
+                            font-size: 2.25rem;
+                        }
+                    }
+            
+                    @media (max-width: $screen-header-lg) {
+                        padding: 5px 35vw;
+                    }
+            
+                    @media (max-width: $screen-country-md5) {
+                        padding: 5px 25vw;
+                    }
+                }
+
+                swiper-container {
+                    width: 110%;
+                    right: 50px;
+                    position: relative;
+                    top: 30px;
+            
+                    @media (max-width: $screen-country-md5) {
+                        top: 30px;
+                    }
+            
+                    @media (max-width: $screen-country-md2) {
+                        width: 125%;
+                        right: 70px;
+                        top: 30px;
+                    }
+            
+                    @media (max-width: $screen-country-md3) {
+                        width: 120%;
+                        left: 0%;
+                        top: 30px;
+                    }
+            
+                    @media (max-width: $screen-country-md4) {
+                        width: 100%;
+                        left: 0%;
+                        top: 30px;
+                    }
+            
+                    @media (max-width: $screen-common-sm7) {
+                        width: 60vw;
+                        left: -8vw;
+                        top: 30px;
+                    }
+            
+                    @media (max-width: $screen-common-sm6) {
+                        width: 60vw;
+                        left: -10vw;
+                        top: 30px;
+                    }
+            
+                    @media (max-width: $screen-common-sm4) {
+                        width: 80vw;
+                        left: -18vw;
+                        top: 30px;
+                    }
+            
+                    @media (max-width: $screen-home-sm3) {
+                        width: 80vw;
+                        left: -24vw;
+                        top: 30px;
+                    }
+            
+                    @media (max-width: $screen-common-sm3) {
+                        width: 80vw;
+                        left: -30vw;
+                        top: 30px;
+                    }
+            
+                    @media (max-width: $screen-common-sm2) {
+                        width: 80vw;
+                        left: -38vw;
+                        top: 30px;
+                    }
+                    &::part(container) {
+                        position: static;
+                    }
+                    &::part(button-prev) {
+                        left: -70px; 
+                        @media (max-width: $screen-country-md5) {
+                            left: -60px;
+                        }
+            
+                        @media (max-width: $screen-country-md3) {
+                            left: -70px;
+                        }
+            
+                        @media (max-width: $screen-country-sm7) {
+                            display: none;
+                        }
+                    }
+                
+                    &::part(button-next) {
+                        right: -70px; 
+            
+                        @media (max-width: $screen-country-sm7) {
+                            display: none;
+                        }
+                    }
+                    &::part(pagination) {
+                        bottom: -30px;
+                    }
+                    swiper-slide { 
+                        .cards {
+                            width: 94%;
+                            margin-bottom: 20px;
+            
+                            @media (max-width: $screen-country-md5) {
+                                position: relative;
+                                left: 8%;
+                            }
+            
+                            @media (max-width: $screen-common-md2) {
+                                position: relative;
+                                left: 6%;
+                            }
+            
+                            @media (max-width: $screen-country-md2) {
+                                position: relative;
+                                left: 25%;
+                            }
+            
+                            @media (max-width: $screen-country-md3) {
+                                position: relative;
+                                left: 14%;
+                            }
+            
+                            @media (max-width: $screen-country-md4) {
+                                position: relative;
+                                left: 8%;
+                            }
+            
+                            @media (max-width: $screen-common-sm8) {
+                                position: relative;
+                                left: 6%;
+                            }
+                        }
+                    }
+                }
+            }
+        
+            
+        
+        }
+    }
+
+    .fileupload {
+        padding: 40px 0;
+        .fileupload-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            padding: 20px;
+    
+            .fileupload-container {
+                max-width: 400px;
+                width: 100%;
+                background: $color-light;
+                padding: 30px;
+                border-radius: 30px;
+    
+                @media (max-width: $screen-home-sm2) {
+                    max-width: 75vw;
+                }
+        
+                .img-area {
+                    position: relative;
+                    width: 100%;
+                    height: 240px;
+                    background: #eff2ef;
+                    margin-bottom: 30px;
+                    border-radius: 15px;
+                    overflow: hidden;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    flex-direction: column;
+        
+                    fa-icon {
+                        font-size: 4.0625rem;
+                    }
+        
+                    h3 {
+                        font-size: $font-size-large;
+                        font-weight: $font-weight-semibold;
+                        margin-top: 0px;
+                    }
+        
+                    img {
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        width: 100%;
+                        height: 100%;
+                        object-fit: cover;
+                        object-position: center;
+                        z-index: 100;
+                    }
+                }
+        
+                .select-image {
+                    display: block;
+                    width: 100%;
+                    padding: 16px 0;
+                    border-radius: 15px;
+                    background: #49B2E4;
+                    color: $color-light;
+                    font-weight: $font-weight-medium;
+                    font-size: $font-size-medium;
+                    border: none;
+                    cursor: pointer;
+                    transition: all .3s ease;
+        
+                    &:hover {
+                        background: darken(#49B2E4, 10%);
+                    }
+                }
+            }
+        }
+    }
+
+    
+}
